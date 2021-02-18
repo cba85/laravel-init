@@ -17,7 +17,7 @@ Make sure [Composer](https://getcomposer.org/download/) is installed globally.
 ## Install
 
 ```bash
-$ composer global require cba85/laravel-quick-setup
+$ composer global require cba85/laravel-init
 ```
 
 Then make sure you have the global Composer binaries directory in your PATH.
