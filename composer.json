@@ -1,0 +1,17 @@
+{
+  "name": "cba85/laravel-init",
+  "description": "Quickly initialize a Laravel/Lumen projet using terminal.",
+  "homepage": "https://github.com/cba85/laravel-init",
+  "license": "MIT",
+  "autoload": {
+    "psr-4": {
+      "Console\\": "src/"
+    }
+  },
+  "require": {
+    "symfony/console": "^5.2"
+  },
+  "bin": [
+    "bin/laravel-init"
+  ]
+}
