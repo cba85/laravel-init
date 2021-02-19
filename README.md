@@ -2,6 +2,15 @@
 
 Quickly initialize a Laravel/Lumen project using terminal.
 
+This package:
+
+1. Clean vendor and node_modules folder if provided
+1. ⚠️ Reset your local MySQL `laravel` or `homestead` database or create it
+1. Install Composer/NPM dependencies
+1. Create `.env` file based on `.env.example` file and generate `APP_KEY`
+1. Clear Laravel caches (route, config, cache)
+1. Migrate and seed database
+
 ## Why creating this package?
 
 I work as a web development teacher and frequently give assignments to my students. I teach them how to use Laravel, and then, they have to create many different Laravel projects for educational purpose.
