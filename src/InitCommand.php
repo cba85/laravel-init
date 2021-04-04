@@ -23,8 +23,9 @@ class InitCommand extends Command
     {
         $output->writeln('<fg=red>Laravel initializator</>');
 
-        // Reset PHP and Node.js dependencies
+        // Reset PHP, NPM and Composer dependencies
         echo shell_exec("rm -rf vendor");
+        echo shell_exec("rm -rf composer.lock");
 
         if ($input->getOption('npm')) {
             echo shell_exec("rm -rf node_modules");
