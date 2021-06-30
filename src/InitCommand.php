@@ -43,15 +43,23 @@ class InitCommand extends Command
 
         if ($input->getOption('npm')) {
             echo shell_exec("npm install");
+            echo shell_exec("npm run dev");
         }
 
         if ($input->getOption('lumen')) {
-            # Update .env files values by creating my own .env file
+            // Update .env files values by creating my own .env file
             $envContent = "APP_NAME=Lumen\nAPP_ENV=local\nAPP_KEY=\nAPP_DEBUG=true\nAPP_URL=http://localhost\nAPP_TIMEZONE=UTC\n\nLOG_CHANNEL=stack\nLOG_SLACK_WEBHOOK_URL=\n\nDB_CONNECTION=mysql\nDB_HOST=127.0.0.1\nDB_PORT=3306\nDB_DATABASE=homestead\nDB_USERNAME=root\nDB_PASSWORD=\n\nCACHE_DRIVER=file\nQUEUE_CONNECTION=sync";
             echo shell_exec("echo \"{$envContent}\" > .env");
         } else {
             // Install Laravel
             echo shell_exec("cp .env.example .env");
+            
+            // Replace default database credentials by mine
+            echo shell_exec("sed -i '' 's/DB_DATABASE=.*/DB_DATABASE=laravel/' .env");
+            echo shell_exec("sed -i '' 's/DB_USERNAME=.*/DB_USERNAME=root/' .env");
+            echo shell_exec("sed -i '' 's/DB_PASSWORD=.*/DB_PASSWORD=/' .env");
+
+            // Generate Laravel app key
             echo shell_exec("php artisan key:generate");
 
             // Clear Laravel caches
@@ -61,8 +69,7 @@ class InitCommand extends Command
         }
 
         // Init datebase
-        echo shell_exec("php artisan migrate");
-        echo shell_exec("php artisan db:seed");
+        echo shell_exec("php artisan migrate:fresh --seed");
 
         $output->writeln("<comment>Done 👍</comment>");
         return Command::SUCCESS;
